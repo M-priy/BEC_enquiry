@@ -1,10 +1,13 @@
-import React from 'react';
-import { Form, FormGroup, Label, Input, InputGroup, InputGroupText, Button } from 'reactstrap';
+import React, { useState } from 'react';
+import { Form, FormGroup, Label, Input, InputGroup, InputGroupText, Button, Tooltip } from 'reactstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 import './AdminAddCourse.css';
 
 const AdminAddCourse = () => {
   const navigate = useNavigate(); // Initialize useNavigate hook
+  const [tooltipOpen, setTooltipOpen] = useState(false); // State for tooltip
+
+  const toggleTooltip = () => setTooltipOpen(!tooltipOpen); // Toggle tooltip
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,6 +67,20 @@ const AdminAddCourse = () => {
           </InputGroup>
         </FormGroup>
         <br />
+        {/* Additional Input for Secret Key */}
+        <FormGroup>
+          <Label for="secretKey">Secret Key</Label>
+          <InputGroup>
+            <InputGroupText>
+              <i className="bi bi-key"></i>
+            </InputGroupText>
+            <Input type="password" name="secretKey" id="secretKey" placeholder="Enter Secret Key" />
+            {/* Tooltip for Secret Key */}
+            {/* <Tooltip placement="top" isOpen={tooltipOpen} target="secretKey" toggle={toggleTooltip}> */}
+              Find Secret Key in Profile Page
+            {/* </Tooltip> */}
+          </InputGroup>
+        </FormGroup>
         <br />
         <div className="border-top pt-3 mt-3 d-flex align-items-center gap-2">
           <Button type="submit" className="btn btn-success mr-2">
@@ -76,3 +93,4 @@ const AdminAddCourse = () => {
 };
 
 export default AdminAddCourse;
+    

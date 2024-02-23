@@ -1,7 +1,7 @@
-import React from 'react';
+// import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { IoLogOutOutline } from 'react-icons/io5';
 import './AdminDash.css';
+import Footer from './Footer';
 
 const AdminDash = () => {
   const navigate = useNavigate();
@@ -12,8 +12,16 @@ const AdminDash = () => {
     navigate('/');
   };
 
+  // Function to handle profile click
+  const handleProfile = () => {
+    navigate('/admin-profile'); // Navigate to AdminProfile page
+  };
+  const handleMaintenance=()=>{
+    alert('Maintenance break initiated.');
+  };
+
   return (
-    <div>
+    <div className='page1'>
       {/* Navbar */}
       <nav className="navbar">
         <div className="logo-container">
@@ -21,9 +29,19 @@ const AdminDash = () => {
         </div>
         <ul className="navbar-nav">
           <li className="nav-item">
+        <button className="nav-link logout-link" onClick={handleMaintenance}>
+        Maintenance break
+        </button>
+         </li>
+          <li className="nav-item">
+            {/* Profile Button */}
+            <button className="nav-link profile-link" onClick={handleProfile}>
+              Profile
+            </button>
+          </li>
+          <li className="nav-item">
             {/* Logout Button */}
             <button className="nav-link logout-link" onClick={handleLogout}>
-              <IoLogOutOutline className="nav-icon" />
               Logout
             </button>
           </li>
@@ -32,24 +50,32 @@ const AdminDash = () => {
 
       {/* Admin Dashboard Container */}
       <div className="admin-dash-container">
-        {/* Admin Boxes */}
-        <div className="admin-box">
-          {/* Link to Add Course Page */}
-          <Link to="/add-course" className="admin-link">Add Course</Link>
+        {/* First Row */}
+        <div className="admin-row">
+          <div className="admin-box add-course">
+            {/* Link to Add Course Page */}
+            <Link to="/add-course" className="admin-link">Add Course</Link>
+          </div>
+          <div className="admin-box view-courses">
+            {/* Link to View Courses Page */}
+            <Link to="/view-courses" className="admin-link">View Courses</Link>
+          </div>
         </div>
-        <div className="admin-box">
-          {/* Link to View Courses Page */}
-          <Link to="/view-courses" className="admin-link">View Courses</Link>
-        </div>
-        <div className="admin-box">
-          {/* Link to View Enquiries Page */}
-          <Link to="/view-enquiries" className="admin-link">View Enquiries</Link>
-        </div>
-        <div className="admin-box">
-          {/* Link to View Payments Page */}
-          <Link to="/view-payments" className="admin-link">View Payments</Link>
+        {/* Second Row */}
+        <div className="admin-row">
+          <div className="admin-box view-enquiries">
+            {/* Link to View Enquiries Page */}
+            <Link to="/view-enquiries" className="admin-link">View Enquiries</Link>
+          </div>
+          <div className="admin-box view-payments">
+            {/* Link to View Payments Page */}
+            <Link to="/view-payments" className="admin-link">View Payments</Link>
+          </div>
         </div>
       </div>
+      <br></br>
+      <br></br>
+      <Footer/>
     </div>
   );
 };
